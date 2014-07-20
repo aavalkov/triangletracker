@@ -15,9 +15,9 @@ var Triangle = {
 	}
 };
 
-var TrianglePerimeter ={
+var TrianglePerimeter = {
 	trianglePerimeterCalc: function(){
-		return this.sideOne + this.sideTwo + this.sideThree 
+		return (this.sideOne + this.sideTwo + this.sideThree )
 	}
 };
 
@@ -30,14 +30,19 @@ $(document).ready(function(){
   	sidesEntered.sideTwo = parseInt($('input#side2').val());
   	sidesEntered.sideThree = parseInt($('input#side3').val());
 
+  	var sideLengths = Object.create(TrianglePerimeter);
+    sideLengths.sideOne = parseInt($('input#side1').val());
+  	sideLengths.sideTwo = parseInt($('input#side2').val());
+  	sideLengths.sideThree = parseInt($('input#side3').val());
+
   	if (sidesEntered.triangleCalculator() === "NOT A TRIANGLE") {
         alert("This is not a triangle!");
       }  else if (sidesEntered.triangleCalculator() === "EQUILATERAL") {
-        $('#equalateral').append("<li>" + sidesEntered.sideOne + ", " + sidesEntered.sideTwo + ", " + sidesEntered.sideThree + "</li>");
+        $('#equalateral').append("<li>" + sidesEntered.sideOne + ", " + sidesEntered.sideTwo + ", " + sidesEntered.sideThree + ", P: " + sideLengths.trianglePerimeterCalc() + "</li>");
       } else if(sidesEntered.triangleCalculator() ===  "ISOCELES") {
-        $('#isoceles').append("<li>" + sidesEntered.sideOne + ", " + sidesEntered.sideTwo + ", " + sidesEntered.sideThree + "</li>");
+        $('#isoceles').append("<li>" + sidesEntered.sideOne + ", " + sidesEntered.sideTwo + ", " + sidesEntered.sideThree + ", P: " + sideLengths.trianglePerimeterCalc() +"</li>");
       } else if (sidesEntered.triangleCalculator() === "SCALENE") {
-       $('#scalene').append("<li>" + sidesEntered.sideOne + ", " + sidesEntered.sideTwo + ", " + sidesEntered.sideThree + "</li>");
+       $('#scalene').append("<li>" + sidesEntered.sideOne + ", " + sidesEntered.sideTwo + ", " + sidesEntered.sideThree + ", P: " + sideLengths.trianglePerimeterCalc() +"</li>");
       } else {
         return false;
       }
@@ -45,8 +50,6 @@ $(document).ready(function(){
       $('input#side1').val("");
       $('input#side2').val("");
       $('input#side3').val("");
-      
-
 
   });
 
